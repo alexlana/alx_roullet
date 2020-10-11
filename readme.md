@@ -1,0 +1,1 @@
+Carrossel estilo "roleta", como um carrossel mesmo, os elementos se movem em um círculo em perspectiva.
