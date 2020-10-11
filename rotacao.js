@@ -93,8 +93,6 @@ function alx_roulette ( opcoes ) {
 		};
 	alx_rodar();
 }
-// iniciar
-alx_roulette();
 
 function alx_rotacao ( item ) {
 

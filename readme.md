@@ -51,6 +51,12 @@ Se você encontrar bugs ou soluções melhores (olha q não tá difícil...), ab
 
 ---
 
+
+...........
+### !!!!! DOC'S ENGLISH VERSION !!!!
+...........
+
+
 Roullet style carousel. It's like a real playground carousel. The items move in a circle in perspective and try to obey physics :) but I think that imperfection is beautiful, so there are several things that differ from reality 😅
 
 
