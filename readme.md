@@ -1,5 +1,9 @@
 **_English version at the end of this doc._**
 
+
+![Preview](PREVIEW.gif "Preview")
+
+
 Carrossel estilo "roleta", como um carrossel de parquinho mesmo. Os elementos se movem em um círculo em perspectiva tentando obedecer a física :) mas como a imperfeição é bela, tem muita coisa diferente da realidade aí 😅
 
 # Modo de usar
