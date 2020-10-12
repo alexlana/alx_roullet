@@ -33,7 +33,7 @@ O HTML deve seguir essa estrutura:
 </div>
 ```
 
-O limite de elementos deve ser bem grande. Não foi testado, mas devem caber 100 elementos no carrossel tranquilamente.
+O limite de elementos deve ser bem grande. Não foi testado, mas devem caber 100 elementos no carrossel tranquilamente. Mas os elementos da frente não podem ficar um sobre o outro, isso estraga o efeito.
 
 Para funcionar, insira o seu HTML seguindo a estrutura acima, adicione o arquivo CSS entre as tags `<head>` e `</head>` e o JavaScript imediatamente antes da tag `</body>`. Carregue ambos usando as tags:
 
@@ -91,7 +91,7 @@ The HTML code need to be like this:
 </div>
 ```
 
-The elements limit must be very large, I haven't tested it yet, but 100 elements must fit in the carousel.
+The elements limit must be very large, I haven't tested it yet, but 100 elements must fit in the carousel. But the elements on front can't be on top of each other, this spoils the effect.
 
 In order to carousel work, place your HTML following the above structure, add the CSS file between the tags `<head>` and `</head>` and the JavaScript imediatelly before the tag `</body>`. Load both using this tags:
 
