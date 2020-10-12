@@ -47,7 +47,7 @@ Para funcionar, insira o seu HTML seguindo a estrutura acima, adicione o arquivo
 
 ## Largura e altura da elipse por onde os itens circulam
 
-O "raio" do círculo é a largura do elemento `roullete-wrapper`. A altura da elipse é a altura do `roullete-wrapper`. Você pode controlar isso usando CSS.
+O "diametro" do círculo é a largura do elemento `roullete-wrapper`. A altura da elipse é a altura do `roullete-wrapper`. Você pode controlar isso usando CSS.
 
 # Opções
 
@@ -105,7 +105,7 @@ In order to carousel work, place your HTML following the above structure, add th
 
 ## Carousel's ellipse width and height
 
-The "radius" of the circle is the width of `roullete-wrapper`. The height of the ellipse is the height of `roullete-wrapper`. You can control it through CSS.
+The "diameter" of the circle is the width of `roullete-wrapper`. The height of the ellipse is the height of `roullete-wrapper`. You can control it through CSS.
 
 # Options
 
