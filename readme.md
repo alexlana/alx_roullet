@@ -13,11 +13,15 @@ O HTML deve seguir essa estrutura:
 ```
 <div id="alx_roulette"><!-- isso deve mudar no futuro, hoje esse id deve ser mantido -->
 	<div class="roullete-wrapper"><!-- onde os elementos do carrossel devem ficar contidos -->
-		<div class="roullete-item">A</div><!-- um elemento do carrossel. todos devem ter essa classe e não precisam ser div, podem ser links (<a>). diagrame o conteúdo aí dentro -->
-		<div class="roullete-item">B</div>
-		<div class="roullete-item">C</div>
-		<div class="roullete-item">D</div>
-		<div class="roullete-item">E</div>
+		<div class="roullete-item"><!-- um elemento do carrossel. todos devem ter essa classe e não precisam ser div, podem ser links (<a>). diagrame o conteúdo aí dentro -->
+			<div class="roullete-item-inner"><!-- elemento interno necessario para posicionar corretamente -->
+				A
+			</div>
+		</div>
+		<div class="roullete-item"><div class="roullete-item-inner">B</div></div>
+		<div class="roullete-item"><div class="roullete-item-inner">C</div></div>
+		<div class="roullete-item"><div class="roullete-item-inner">D</div></div>
+		<div class="roullete-item"><div class="roullete-item-inner">E</div></div>
 	</div>
 	<div class="roullete-bullets-wrapper"><!-- os elementos clicáveis para selecionar o item do carrossel devem ficar aqui dentro -->
 		<div class="roullete-bullets"></div><!-- um dos elementos clicáveis para atualizar aposição do carrossel. precisa ter o mesmo número de elementos aqui q há no conteiner anterior -->

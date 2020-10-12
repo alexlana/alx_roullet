@@ -121,7 +121,7 @@ function alx_rotacao ( item ) {
 		ahora = dif * ease + tini; // quanto andou + ponto inicial
 		var onde = Math.cos(phase + ahora * 2 * Math.PI) * clockwise_org;
 		var onde2 = Math.cos(phasev + ahora * 2 * Math.PI * eyeview);
-		var blur = escala = 1/2 * Math.cos(phasev/2 + ahora * Math.PI);
+		var blur = escala = 0.5 * Math.cos(phasev/2 + ahora * Math.PI);
 
 		escala = escala_transform(escala);
 
@@ -135,13 +135,15 @@ function alx_rotacao ( item ) {
 			return false;
 		}
 
-		blur *= 9;
+		blur *= 8;
 		blur = Math.abs(blur);
 		blur = 5 - blur;
 		blur = Math.floor(blur,2);
 
 		rodantes[i].setAttribute('escala', escala);
 		rodantes[i].style.top = (onde2*50)+'%';
+		if ( escala < 52.3 )
+			escala = 52.3; // se melhorar a formula para tirar isso aqui vai o ideal
 		rodantes[i].style.transform = 'scale('+escala+'%) translateX(-50%)';
 		rodantes[i].style.left = onde+'%';
 		rodantes[i].style.marginLeft = '50%';
@@ -156,9 +158,9 @@ function alx_rotacao ( item ) {
 ///////////////////////////////////////////////////
 // funcoes para auxiliar
 function escala_transform ( escala ) {
-	escala *= 100;
+	escala *= 200;
 	escala = Math.abs(escala);
-	escala += 100;
+	escala += 50;
 	escala /= 1.48;
 	return escala;
 }
