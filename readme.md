@@ -33,7 +33,7 @@ O HTML deve seguir essa estrutura:
 </div>
 ```
 
-O limite de elementos deve ser bem grande, não foi testado ou avaliado sobre isso, mas devem caber 100 elementos no carrossel tranquilamente.
+O limite de elementos deve ser bem grande. Não foi testado, mas devem caber 100 elementos no carrossel tranquilamente.
 
 Para funcionar, insira o seu HTML seguindo a estrutura acima, adicione o arquivo CSS entre as tags `<head>` e `</head>` e o JavaScript imediatamente antes da tag `</body>`. Carregue ambos usando as tags:
 
