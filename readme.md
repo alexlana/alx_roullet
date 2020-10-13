@@ -33,7 +33,7 @@ O HTML deve seguir essa estrutura:
 </div>
 ```
 
-O limite de elementos deve ser bem grande. Não foi testado, mas devem caber 100 elementos no carrossel tranquilamente. Mas os elementos da frente não podem ficar um sobre o outro, isso estraga o efeito.
+O limite de elementos deve ser bem grande, não foi testado ou avaliado sobre isso, mas devem caber 100 elementos no carrossel tranquilamente.
 
 Para funcionar, insira o seu HTML seguindo a estrutura acima, adicione o arquivo CSS entre as tags `<head>` e `</head>` e o JavaScript imediatamente antes da tag `</body>`. Carregue ambos usando as tags:
 
@@ -48,6 +48,14 @@ Para funcionar, insira o seu HTML seguindo a estrutura acima, adicione o arquivo
 ## Largura e altura da elipse por onde os itens circulam
 
 O "diametro" do círculo é a largura do elemento `roullete-wrapper`. A altura da elipse é a altura do `roullete-wrapper`. Você pode controlar isso usando CSS.
+
+## Links
+
+É possível usar apenas 1 link trocando o `<div>` pelo `<a href="">` nos `.roullete-item`.
+
+## Mobile / telas pequenas
+
+É possível usar o atributo `transform` do CSS em um elemento pai, ou simplesmente alterar o tamanho do `.roullete-wrapper` e elementos internos. Outra ideia é manter o `.roullete-wrapper` maior que a tela e adicionar `overlay: hidden` a um elemento pai.
 
 # Opções
 
@@ -91,7 +99,7 @@ The HTML code need to be like this:
 </div>
 ```
 
-The elements limit must be very large, I haven't tested it yet, but 100 elements must fit in the carousel. But the elements on front can't be on top of each other, this spoils the effect.
+The elements limit must be very large, I haven't tested it yet, but 100 elements must fit in the carousel.
 
 In order to carousel work, place your HTML following the above structure, add the CSS file between the tags `<head>` and `</head>` and the JavaScript imediatelly before the tag `</body>`. Load both using this tags:
 
@@ -106,6 +114,14 @@ In order to carousel work, place your HTML following the above structure, add th
 ## Carousel's ellipse width and height
 
 The "diameter" of the circle is the width of `roullete-wrapper`. The height of the ellipse is the height of `roullete-wrapper`. You can control it through CSS.
+
+## Links
+
+You can add only one link. Just change the `<div>` for `<a href="">` in the `.roullete-item` items.
+
+## Mobile / small screens
+
+Try to use the `transform` CSS attribute in a parent element, or simply change the size of `.roullete-wrapper` and inner elements. Other idea is to keep `.roullete-wrapper` bigger than viewport and add `overlay: hidden` to a parent element.
 
 # Options
 

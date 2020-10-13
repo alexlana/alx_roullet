@@ -26,12 +26,21 @@ for ( var i=0; i<rbullets.length; i++ ) {
 }
 var rodantes = document.querySelectorAll('.roullete-item');
 var espaco = 6.3/rodantes.length; // 6.3 eh o valor da volta completa. soh sei q eh assim
+for ( var i=0; i<rodantes.length; i++ ) {
+	var divdraggable = document.createElement('DIV');
+	divdraggable.setAttribute('class', 'roullete-dragit');
+	divdraggable.setAttribute('onmousedown', 'alx_mdown(event)');
+	rodantes[i].getElementsByClassName('roullete-item-inner')[0].appendChild(divdraggable);
+	rodantes[i].setAttribute('onclick', 'event.preventDefault();');
+}
 
 function alx_rodar (e) {
 	clearTimeout(alx_timeout);
 
 	if ( e==undefined )
 		var bnum = 0;
+	else if ( !isNaN(e) )
+		var bnum = e;
 	else
 		var bnum = e.target.getAttribute('bullet-num');
 
@@ -102,6 +111,11 @@ function alx_rotacao ( item ) {
 		itematual = item;
 	}
 
+	var cur = document.querySelectorAll('.roullete-current');
+	for ( var i=0; i<cur.length; i++ )
+		cur[i].classList.remove('roullete-current');
+	rodantes[itematual].classList.add('roullete-current');
+	rbullets[itematual].classList.add('roullete-current');
 	document.getElementById('alx_roulette').classList.add('movin');
 
 	var radius = alx_opt['radius']; // % da largura do wrapper
@@ -140,7 +154,6 @@ function alx_rotacao ( item ) {
 		blur = 5 - blur;
 		blur = Math.floor(blur,2);
 
-		rodantes[i].setAttribute('escala', escala);
 		rodantes[i].style.top = (onde2*50)+'%';
 		if ( escala < 52.3 )
 			escala = 52.3; // se melhorar a formula para tirar isso aqui vai o ideal
@@ -154,6 +167,53 @@ function alx_rotacao ( item ) {
 
 	alx_timeout = setTimeout( function(){alx_rotacao();}, (1000/alx_opt['framesporsegundo']) );
 }
+
+var mouse_ini = new Array();
+var mouse_div_ini = new Array();
+var elem_dragged;
+function alx_mdown (e) {
+	e.stopPropagation();
+	e.preventDefault();
+	mouse_ini['x'] = e.clientX;
+	mouse_ini['y'] = e.clientY;
+	mouse_div_ini['x'] = e.clientX;
+	mouse_div_ini['y'] = e.clientY;
+	elem_dragged = e.target;
+	document.onmouseup = alx_mup;
+	document.onmousemove = alx_drag;
+}
+function alx_mup (e) {
+	e.stopPropagation();
+	e.preventDefault();
+	var dist_x = e.clientX - mouse_ini['x'];
+	var dist_y = e.clientY - mouse_ini['y'];
+	elem_dragged.removeAttribute('style');
+	document.onmouseup = null;
+	document.onmousemove = null;
+	mouse_ini['x'] = 0;
+	mouse_ini['y'] = 0;
+
+	if ( dist_x>=-25 && dist_x<=25 ) {
+		var href = elem_dragged.parentElement.parentElement.getAttribute('href');
+		if ( href != undefined && href != null )
+			window.location.href = href;
+		return false;
+	}
+
+	itematual *= 1; // garantir q vai ser um numero
+	var nitem = (dist_x<-25)*(itematual+1) + (dist_x>25)*(itematual-1);
+	nitem = nitem - (nitem>rodantes.length-1)*nitem + (nitem<0)*(rodantes.length);
+	alx_rodar(nitem);
+}
+function alx_drag (e) {
+	e.stopPropagation();
+	e.preventDefault();
+	var dist_x = e.clientX - mouse_ini['x'];
+	var dist_y = e.clientY - mouse_ini['y'];
+	elem_dragged.style.marginTop = dist_y+'px';
+	elem_dragged.style.marginLeft = dist_x+'px';
+}
+
 
 ///////////////////////////////////////////////////
 // funcoes para auxiliar
