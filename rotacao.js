@@ -18,27 +18,27 @@ var tini;
 var tfim;
 
 var rbullets = document.querySelectorAll('.roullete-bullets');
-for ( var i=0; i<rbullets.length; i++ ) {
-	rbullets[i].setAttribute('bullet-num', i);
-	rbullets[i].addEventListener( 'click', alx_rodar );
-	escala_antes[i] = -10000;
-	crescendo[i] = false;
-}
 var rodantes = document.querySelectorAll('.roullete-item');
 var espaco = 6.3/rodantes.length; // 6.3 eh o valor da volta completa. soh sei q eh assim
 for ( var i=0; i<rodantes.length; i++ ) {
 	var divdraggable = document.createElement('DIV');
 	divdraggable.setAttribute('class', 'roullete-dragit');
 	divdraggable.setAttribute('onmousedown', 'alx_mdown(event)');
+	divdraggable.setAttribute('onclick', 'event.stopPropagation()');
 	rodantes[i].getElementsByClassName('roullete-item-inner')[0].appendChild(divdraggable);
-	rodantes[i].setAttribute('onclick', 'event.preventDefault();');
+	rodantes[i].setAttribute('id', 'rit-'+i);
+
+	rbullets[i].setAttribute('bullet-num', i);
+	rbullets[i].addEventListener( 'click', alx_rodar );
+	escala_antes[i] = -10000;
+	crescendo[i] = false;
 }
 
 function alx_rodar (e) {
 	clearTimeout(alx_timeout);
 
 	if ( e==undefined )
-		var bnum = 0;
+		var bnum = alx_opt['primeiro'];
 	else if ( !isNaN(e) )
 		var bnum = e;
 	else
@@ -92,12 +92,14 @@ function alx_rodar (e) {
 
 function alx_roulette ( opcoes ) {
 	alx_opt = {
+			'primeiro': 0,
 			'blur': true,
 			'eyeview': 'top',
 			'radius': 50, // percentual do tamanho do wrapper
 			'clockwise_org': false,
 			'clockwise_rot': true,
 			'framesporsegundo': 60,
+			'aberturafundo': 1,
 			'voltasporsegundo': 0.6, // eh uma base de calculo, mas para mudanca entre itens proximos esse valor eh reduzido, assim nao fica rapido demais
 		};
 	alx_rodar();
@@ -116,6 +118,16 @@ function alx_rotacao ( item ) {
 		cur[i].classList.remove('roullete-current');
 	rodantes[itematual].classList.add('roullete-current');
 	rbullets[itematual].classList.add('roullete-current');
+	var cur = document.querySelectorAll('.roullete-right');
+	for ( var i=0; i<cur.length; i++ )
+		cur[i].classList.remove('roullete-right');
+	rodantes[( (1*itematual+1<rodantes.length)*(1*itematual+1) )].classList.add('roullete-right');
+	rbullets[( (1*itematual+1<rodantes.length)*(1*itematual+1) )].classList.add('roullete-right');
+	var cur = document.querySelectorAll('.roullete-left');
+	for ( var i=0; i<cur.length; i++ )
+		cur[i].classList.remove('roullete-left');
+	rodantes[( (itematual-1>=0)*(itematual-1) + (itematual-1<0)*(rodantes.length-1) )].classList.add('roullete-left');
+	rbullets[( (itematual-1>=0)*(itematual-1) + (itematual-1<0)*(rodantes.length-1) )].classList.add('roullete-left');
 	document.getElementById('alx_roulette').classList.add('movin');
 
 	var radius = alx_opt['radius']; // % da largura do wrapper
@@ -128,6 +140,10 @@ function alx_rotacao ( item ) {
 
 	for ( var i=0; i<rodantes.length; i++ ) {
 
+		var desvio = 1;
+		if ( !rodantes[i].classList.contains('roullete-current') && !rodantes[i].classList.contains('roullete-right') && !rodantes[i].classList.contains('roullete-left') )
+			desvio = alx_opt['aberturafundo'];
+
 		var phase = 0 + espaco*i;
 		var phasev = phase + 1.57618; // movimento perpendicular ao do phase
 
@@ -139,7 +155,7 @@ function alx_rotacao ( item ) {
 
 		escala = escala_transform(escala);
 
-		onde = (onde * radius);
+		onde = onde * radius;
 
 		// interrompe a funcao antes do settimeout se o item selecionado estah na frente
 		if ( clockwise_rot*tfim < clockwise_rot*alx_t ) {
@@ -157,8 +173,8 @@ function alx_rotacao ( item ) {
 		rodantes[i].style.top = (onde2*50)+'%';
 		if ( escala < 52.3 )
 			escala = 52.3; // se melhorar a formula para tirar isso aqui vai o ideal
-		rodantes[i].style.transform = 'scale('+escala+'%) translateX(-50%)';
-		rodantes[i].style.left = onde+'%';
+		rodantes[i].style.transform = 'scale('+(escala/100)+') translateX(-50%)';
+		rodantes[i].style.left = desvio*onde+'%';
 		rodantes[i].style.marginLeft = '50%';
 		rodantes[i].style.filter = 'blur('+blur+'px) ';
 		rodantes[i].style.zIndex = Math.round(onde2*20);
@@ -196,7 +212,7 @@ function alx_mup (e) {
 	if ( dist_x>=-25 && dist_x<=25 ) {
 		var href = elem_dragged.parentElement.parentElement.getAttribute('href');
 		if ( href != undefined && href != null )
-			window.location.href = href;
+			elem_dragged.parentElement.parentElement.click();
 		return false;
 	}
 
