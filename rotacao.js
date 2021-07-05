@@ -17,6 +17,7 @@ var duration;
 var tini;
 var tfim;
 
+var rwrapper = document.querySelector('#roullete-wrapper');
 var rbullets = document.querySelectorAll('.roullete-bullets');
 var rodantes = document.querySelectorAll('.roullete-item');
 var espaco = 6.3/rodantes.length; // 6.3 eh o valor da volta completa. soh sei q eh assim
@@ -176,10 +177,10 @@ function alx_rotacao ( item ) {
 		blur = 5 - blur;
 		blur = Math.floor(blur,2);
 
-		rodantes[i].style.top = (onde2*50)+'%';
 		if ( escala < 52.3 )
-			escala = 52.3; // se melhorar a formula para tirar isso aqui vai o ideal
-		rodantes[i].style.transform = 'scale('+(escala/100)+') translateX(-50%)';
+			escala = 52.3; // se melhorar a formula para tirar isso aqui vai ser o ideal
+		ptop = rwrapper.offsetHeight * (onde2*50) / 100;
+		rodantes[i].style.transform = 'scale('+(escala/100)+') translateX( -50% ) translateY( '+ptop+'px )';
 		rodantes[i].style.left = desvio*onde+'%';
 		rodantes[i].style.marginLeft = '50%';
 		rodantes[i].style.filter = 'blur('+blur+'px) ';

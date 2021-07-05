@@ -4,6 +4,7 @@
 	position: relative;
 	z-index: 1;
 	margin: auto;
+	will-change: transform, top;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -17,6 +18,7 @@
 	height: 10px;
 	transform: translateX(-50%);
 	position: absolute;
+	will-change: transform, filter, left, top, z-index;
 	transition: 0.4s filter;
 }
 .roullete-item-inner {
