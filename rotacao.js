@@ -120,21 +120,18 @@ function alx_rotacao ( item ) {
 		itematual = item;
 	}
 
-	var cur = document.querySelectorAll('.roullete-current');
-	for ( var i=0; i<cur.length; i++ )
-		cur[i].classList.remove('roullete-current');
+	var cur = document.querySelector('.roullete-current');
+	cur.classList.remove('roullete-current');
 	rodantes[itematual].classList.add('roullete-current');
-	document.querySelectorAll('.roullete-bullets[bullet-num="'+itematual+'"]')[0].classList.add('roullete-current');
-	var cur = document.querySelectorAll('.roullete-right');
-	for ( var i=0; i<cur.length; i++ )
-		cur[i].classList.remove('roullete-right');
+	document.querySelector('.roullete-bullets[bullet-num="'+itematual+'"]').classList.add('roullete-current');
+	var cur = document.querySelector('.roullete-right');
+	cur.classList.remove('roullete-right');
 	rodantes[( (1*itematual+1<rodantes.length)*(1*itematual+1) )].classList.add('roullete-right');
-	document.querySelectorAll('.roullete-bullets[bullet-num="'+((1*itematual+1<rodantes.length)*(1*itematual+1))+'"]')[0].classList.add('roullete-right');
-	var cur = document.querySelectorAll('.roullete-left');
-	for ( var i=0; i<cur.length; i++ )
-		cur[i].classList.remove('roullete-left');
+	document.querySelector('.roullete-bullets[bullet-num="'+((1*itematual+1<rodantes.length)*(1*itematual+1))+'"]').classList.add('roullete-right');
+	var cur = document.querySelector('.roullete-left');
+	cur[i].classList.remove('roullete-left');
 	rodantes[( (itematual-1>=0)*(itematual-1) + (itematual-1<0)*(rodantes.length-1) )].classList.add('roullete-left');
-	document.querySelectorAll('.roullete-bullets[bullet-num="'+((itematual-1>=0)*(itematual-1) + (itematual-1<0)*(rodantes.length-1))+'"]')[0].classList.add('roullete-left');
+	document.querySelector('.roullete-bullets[bullet-num="'+((itematual-1>=0)*(itematual-1) + (itematual-1<0)*(rodantes.length-1))+'"]').classList.add('roullete-left');
 	document.getElementById('alx_roulette').classList.add('movin');
 
 	var radius = alx_opt['radius']; // % da largura do wrapper
